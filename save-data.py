@@ -7,7 +7,7 @@ from langchain_openai.embeddings import OpenAIEmbeddings
 OPENAI_API_KEY="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"
 
 papers = [
-    # "1409-4258-ree-26-02-408.pdf",
+    "1409-4258-ree-26-02-408.pdf",
     "2452-6053-andesped-andespediatr-v94i1-4203.pdf",
     "2308-0531-rfmh-23-04-62.pdf",
     "2223-7666-liber-27-01-e458.pdf",

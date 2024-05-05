@@ -22,7 +22,7 @@ if st.button("Examinar"):
         response2 = query_papers(antithesis)
     col1.warning(response1)
     col2.info(
-f"""**Tu antitesis:** {antithesis}
+f"""**Contraste:** {antithesis}
 
 ---
 {response2}""")
