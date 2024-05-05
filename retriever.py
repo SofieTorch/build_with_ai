@@ -13,7 +13,7 @@ def query_papers(input):
     persistent_client = chromadb.PersistentClient()
     vectorstore = Chroma(
         client=persistent_client,
-        collection_name="papers",
+        collection_name="chunks",
         embedding_function=OpenAIEmbeddings(api_key=OPENAI_API_KEY, model="text-embedding-3-small"),
     )
 
