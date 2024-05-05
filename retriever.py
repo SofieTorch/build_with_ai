@@ -4,7 +4,11 @@ from langchain_openai.embeddings import OpenAIEmbeddings
 from langchain.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain.schema.runnable import RunnablePassthrough
+from langchain_core.runnables import RunnableParallel
 from langchain.schema.output_parser import StrOutputParser
+
+def format_docs(docs):
+    return "\n\n".join(doc.page_content for doc in docs)
 
 def query_papers(input):
     
@@ -33,12 +37,24 @@ def query_papers(input):
     llm = ChatOpenAI(model_name="gpt-4-0125-preview", temperature=0, openai_api_key=OPENAI_API_KEY)
 
     rag_chain = (
-        {"context": retriever,  "question": RunnablePassthrough()} 
+        RunnablePassthrough.assign(context=(lambda x: format_docs(x["context"])))
         | prompt 
         | llm
         | StrOutputParser() 
     )
+    
+    rag_chain_with_source = RunnableParallel(
+        {"context": retriever, "question": RunnablePassthrough()}
+    ).assign(answer=rag_chain)
 
-    return rag_chain.invoke(input)
+    return rag_chain_with_source.invoke(input)
 
+# result = query_papers("Los smartphones perjudican la calidad de sueño")
+# print(result)
+# print('------')
+# print(result['answer'])
+# print('----')
+# for i in result['context']:
+#     print(i.metadata['title'])
+#     print(i.metadata['author'])
 
