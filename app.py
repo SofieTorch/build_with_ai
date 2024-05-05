@@ -6,8 +6,8 @@ import streamlit as st
 from retriever import query_papers
 from prompt_transformer import get_antithesis
 
-st.set_page_config(page_title="Docu-Menta Search Engine", page_icon="📄")
-st.title("Redescubre las cosas")
+st.set_page_config(page_title="BBreak Search Engine", page_icon="📄")
+st.title("BBreak: Redescubre las cosas")
 
 input = st.text_area(
     "Escribe algo que quieras verificar o conocer a profundidad :)",
