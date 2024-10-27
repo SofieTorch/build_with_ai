@@ -5,3 +5,4 @@ langchain_chroma
 langchain_community
 langchain_experimental
 pysqlite3-binary==0.5.2.post2
+protobuf==3.20.*
